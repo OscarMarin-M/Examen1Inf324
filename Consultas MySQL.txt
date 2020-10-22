@@ -1,0 +1,32 @@
+SELECT count(case when i.lugar like '01' then n.nota end) 'Chuquisaca',
+	count(case when i.lugar like '02' then n.nota end) 'La Paz',
+ 	count(case when i.lugar like '03' then n.nota end) 'Cochabamba',
+ 	count(case when i.lugar like '04' then n.nota end) 'Oruro',
+ 	count(case when i.lugar like '05' then n.nota  end) 'Potosi',
+ 	count(case when i.lugar like '06' then n.nota  end) 'Tarija',
+ 	count(case when i.lugar like '07' then n.nota  end) 'Santa Cruz',
+ 	count(case when i.lugar like '08' then n.nota  end) 'Beni',
+ 	count(case when i.lugar like '09' then n.nota  end) 'Pando'
+	FROM identificador as i, notas as n
+	where i.ci like n.ci
+	and n.nota > 50"
+
+
+
+
+SELECT count(a.lugar) cantidad,(a.lugar),(case 
+			when a.lugar like '01' then 'Chuquisaca'
+			when a.lugar like '02' then 'La Paz'
+			when a.lugar like '03' then 'Cochabamba'
+			when a.lugar like '04' then 'Oruro'
+			when a.lugar like '05' then 'Potosi'
+			when a.lugar like '06' then 'Tarija'
+			when a.lugar like '07' then 'Santa Cruz'
+			when a.lugar like '08' then 'Beni'
+			when a.lugar like '09' then 'Pando'
+			end) Departamento
+			FROM (SELECT ci,lugar
+			FROM identificador) as a, notas as n
+			where a.ci like n.ci
+			and n.nota > 50
+			GROUP by a.lugar
